@@ -17,6 +17,8 @@ export function Welcome() {
           this guide
         </Anchor>
         . To get started edit index.tsx file.
+        <br />
+          Sameer Dingore
       </Text>
     </>
   );
