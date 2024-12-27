@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useMediaQuery } from '@mantine/hooks';
 import Header from '@/components/Header/Header';
 import MainSection from '@/components/Home/Main/MainSection';
+import ProjectList from '@/components/Projects/ProjectList';
 
 export default function HomePage() {
   const router = useRouter();
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
      <Header/>
      <MainSection/>
+     <ProjectList/>
     </>
   );
 }
