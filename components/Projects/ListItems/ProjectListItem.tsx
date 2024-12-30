@@ -1,4 +1,5 @@
-import { Image, Flex, Text, } from "@mantine/core";
+import { Image, Flex, Text } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks";
 
 interface ProjectSectionProps {
   title: string;
@@ -11,33 +12,45 @@ export default function ProjectListItem({
   bulletPoints,
   gifSrc,
 }: ProjectSectionProps) {
+  const matches = useMediaQuery('(max-width: 768px)'); 
+  
   return (
-    <>
-      <Flex
-        direction="row"
-        justify="flex-start"
-        align="center"
-        wrap="wrap"
-        gap="xl"
-        style={{ padding: '2rem' }}
+    <Flex
+      direction={matches ? 'column' : 'row'}  
+      justify="flex-start"
+      align="center"
+      wrap="wrap"
+      gap="xl"
+      style={{ padding: '2rem' }}
+    >
+      <Image
+        src={gifSrc}
+        alt={title}
+        style={{
+          width: '100%',
+          maxHeight: '400px',  
+          objectFit: 'contain',  
+        }}
+      />
+      <div
+        style={{
+          width: '100%',  
+          maxWidth: matches ? '100%' : '600px',  
+          flex: '1',  
+          paddingTop: matches ? '1rem' : '0',  
+        }}
       >
-        <Image
-          src={gifSrc}
-          alt={title} 
-          style={{
-            width: 'auto', 
-            height: '300px', 
-          }}
-        />
-        <div>
-          <Text component="h3">{title}</Text>
-          <ul>
-            {bulletPoints.map((point, index) => (
-              <li key={index}>{point}</li> 
-            ))}
-          </ul>
-        </div>
-      </Flex>
-    </>
+        <Text component="h3" style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
+          {title}
+        </Text>
+        <ul style={{ paddingLeft: '1.5rem' }}>
+          {bulletPoints.map((point, index) => (
+            <li key={index} style={{ marginBottom: '0.5rem' }}>
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Flex>
   );
 }
