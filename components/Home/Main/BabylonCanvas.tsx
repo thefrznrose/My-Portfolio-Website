@@ -1,5 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { Engine, Scene, ArcRotateCamera, HemisphericLight, Vector3, MeshBuilder } from "@babylonjs/core";
+import {
+  Engine,
+  Scene,
+  ArcRotateCamera,
+  HemisphericLight,
+  Vector3,
+} from "@babylonjs/core";
+import { getMotif } from "@/functions/GetMotif";
 
 const BabylonCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -10,16 +17,35 @@ const BabylonCanvas: React.FC = () => {
     const engine = new Engine(canvasRef.current, true);
     const scene = new Scene(engine);
 
-    // Create a sphere
-    const sphere = MeshBuilder.CreateSphere("sphere", { diameter: 2 }, scene);
-
     // Add a camera
-    const camera = new ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2, 10, sphere.position, scene);
+    const camera = new ArcRotateCamera(
+      "camera",
+      Math.PI / 2,
+      Math.PI / 2,
+      50,
+      new Vector3(0, 0, 0),
+      scene
+    );
     camera.attachControl(canvasRef.current, true);
 
-    // Add a light
-    new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+    // Add lighting
+    const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
+    light.intensity = 0.8;
 
+    // Load the motif
+    const loadMotif = async () => {
+        try {
+          // Ensure you pass all four arguments to getMotif
+          const motifNode = await getMotif("1Y26.json", 0xcc2900, 0xff3300, scene);
+          motifNode.position = new Vector3(1, 1, -1); // Adjust as needed
+        } catch (error) {
+          console.error("Error loading motif:", error);
+        }
+      };
+
+    loadMotif();
+
+    // Render loop
     engine.runRenderLoop(() => {
       scene.render();
     });
@@ -27,7 +53,6 @@ const BabylonCanvas: React.FC = () => {
     const resizeHandler = () => {
       engine.resize();
     };
-
     window.addEventListener("resize", resizeHandler);
 
     return () => {

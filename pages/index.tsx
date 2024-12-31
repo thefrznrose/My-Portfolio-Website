@@ -11,9 +11,9 @@ export default function HomePage() {
 
   return (
     <>
-     <Header/>
+     {/* <Header/>
      <MainSection/>
-     <ProjectList/>
+     <ProjectList/> */}
      <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
       <BabylonCanvas />
     </div>
