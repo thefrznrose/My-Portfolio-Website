@@ -1,32 +1,26 @@
-/**
- * Copyright (c) 2024 RNA3DS Lab CSUMB.
- * All code written for RNA3DS Lab is protected under the terms of the NDA.
- * No code shall be distributed or modified without the permission of the PI.
- * @author Judah Silva
- */
-/**
- * ________________________________________________________________________________________________
- */
-/**
- * Get the vertices and indices from the nucleotide data
- * @param nucleotideData {number[][]}
- * @returns {number[][][]}
- */
 export function getPoints(
-    nucleotideData: number[][]
+    nucleotideData: number[][] // expect a 2D array where each element is [x, y, z] etc.
 ): number[][][] {
     const vertices: number[][] = [];
     const indices: number[][] = [];
 
-    for (let i = 1; i < nucleotideData.length; i += 2) {
-        vertices.push(nucleotideData[i]);
-        indices.push(nucleotideData[i + 1]);
+    // Assuming first array is vertices and second array is indices
+    const vertexData = nucleotideData[0]; // the first array holds the coordinates
+    const indexData = nucleotideData[1]; // the second array holds indices for mesh creation
+
+    // Loop through the vertex data and create the appropriate mesh
+    for (let i = 0; i < vertexData.length; i += 3) {
+        const x = vertexData[i];
+        const y = vertexData[i + 1];
+        const z = vertexData[i + 2];
+        vertices.push([x, y, z]); // Add each vertex
     }
-    console.log(vertices)
-    console.log(indices)
+
+    // If there are indices, organize them as needed
+    // Assuming each group of indices defines a triangle or line
+    for (let i = 0; i < indexData.length; i += 3) {
+        indices.push([indexData[i], indexData[i + 1], indexData[i + 2]]);
+    }
+
     return [vertices, indices];
 }
-
-/**
- * ________________________________________________________________________________________________
- */
