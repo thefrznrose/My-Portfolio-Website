@@ -32,7 +32,6 @@ export default function Banner () {
             </Text>
           </div>
         </Container>
-        <Divider my="md" />
         </>
     );
 }
