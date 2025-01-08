@@ -8,6 +8,8 @@ import {
   DirectionalLight,
   Mesh,
   Color4,
+  StandardMaterial,
+  Color3
 } from "@babylonjs/core";
 
 import { getMotif } from "@/functions/GetMotif";
@@ -91,7 +93,32 @@ const BabylonCanvas: React.FC = () => {
           });
         };
         loadMotif();
+        
+        // Scroll-based color change
+    const handleScroll = () => {
+      const scrollTop = window.scrollY; // Current scroll position
+      console.log(scrollTop)
+      const maxScroll = document.body.scrollHeight - window.innerHeight; // Maximum scrollable height
+      const scrollPercentage = scrollTop / maxScroll; // Scroll percentage (0 to 1)
+
+      // Calculate color based on scroll percentage
+      const redValue = Math.round(255 * (1 - scrollPercentage));
+      const blueValue = Math.round(255 * scrollPercentage);
+
+      motifRef.current.forEach((motif) => {
+        motif.getChildren().forEach((child) => {
+          if (child instanceof Mesh) { // Ensure the child is a Mesh
+        const material = child.material as StandardMaterial | null;
+        if (material) {
+          material.diffuseColor = new Color3(redValue / 255, 0, blueValue / 255);
+        }
+      }
+        });
+      });
+    };
     
+    window.addEventListener("scroll", handleScroll);
+
       engine.runRenderLoop(() => {
         motifRef.current.forEach((motif) => {
           // Apply a slow rotation on each frame
