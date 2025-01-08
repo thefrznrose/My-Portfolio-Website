@@ -25,7 +25,7 @@ export default function Banner () {
           />
           <div style={{ paddingLeft: "4rem",flex: 1, textAlign: "left" }}>
             <Text component="h1" size="xl" mt="lg">
-              Hello, I'm Shaun
+              Hello, I'm Shaun Rose
             </Text>
             <Text size="md" mt="sm">
               Welcome to my portfolio!
