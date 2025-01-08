@@ -14,7 +14,7 @@ export default function HomePage() {
     <>
       <Header />
       {/* Container for BabylonCanvas and MainSection */}
-      <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', width: '100vw', height: '50vh', overflow: 'hidden' }}>
         {/* Babylon Canvas */}
         <BabylonCanvas />
         {/* Main Section on top of the canvas */}
