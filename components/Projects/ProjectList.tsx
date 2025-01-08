@@ -1,5 +1,6 @@
 import { Divider } from "@mantine/core";
 import ProjectListItem from "./ListItems/ProjectListItem";
+import React from "react";
 
 export default function ProjectList() {
   const projects = [
@@ -52,16 +53,15 @@ export default function ProjectList() {
   
   return (
     <>
-      {projects.map((project, index) => (
-        <>
-            <ProjectListItem
-              key={index}
-              title={project.title}
-              bulletPoints={project.bulletPoints}
-              gifSrc={project.gifSrc}
-            />        
-            <Divider my="md" />
-        </>
+      {projects.map((project) => (
+        <React.Fragment key={project.title}>
+          <ProjectListItem
+            title={project.title}
+            bulletPoints={project.bulletPoints}
+            gifSrc={project.gifSrc}
+          />
+          <Divider my="md" />
+        </React.Fragment>
       ))}
     </>
   );
