@@ -8,7 +8,7 @@ export default function MainSection() {
     <>
       <Banner/>
       {/* <SeeResumeButton/>
-      <SeeCVButton/> */}
+      // <SeeCVButton/> */}
     </>
   );
 }

@@ -37,7 +37,7 @@ const BabylonCanvas: React.FC = () => {
     // Load the motif
     const loadMotif = async () => {
         try {
-          const { motif, center } = await getMotif("1Y26.json", 0xcc2900, 0xff3300, scene);
+          const { motif, center } = await getMotif("1Y26.json", "0xcc2900", 0xff3300, scene);
           console.log(center)
           motif.position = new Vector3(-center[0], -center[1], center[2]);
         } catch (error) {
