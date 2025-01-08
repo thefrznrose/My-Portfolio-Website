@@ -46,18 +46,19 @@ const BabylonCanvas: React.FC = () => {
 
 
   const scaleMotif = (engine: Engine, scene: Scene, scale: number) => {
-    const aspectRatio = window.innerWidth / 2000;
-    motifRef.current.forEach((motif) => {
-      motif.scaling = new Vector3(aspectRatio * scale, aspectRatio * scale, aspectRatio * scale);
-    });
+    const aspectRatio = window.innerWidth / 20000;
+    // console.log(aspectRatio)
+    if(aspectRatio > 0.7) {
+      motifRef.current.forEach((motif) => {
+        motif.scaling = new Vector3(aspectRatio * scale, aspectRatio * scale, aspectRatio * scale);
+      });
+    }
   };
   
   useEffect(() => {
     // Initializing the canvas.
     const {engine, scene} = initializeCanvas(canvasRef.current)
     if (!engine || !scene) return;
-    // Load a motif from the public directory.
-        // Load motifs from the public directory.
         const loadMotif = async () => {
           try {
             const { motif: redMotif, center: redCenter } = await getMotif(
@@ -67,9 +68,8 @@ const BabylonCanvas: React.FC = () => {
               1,
               scene
             );
-            redMotif.position = new Vector3(-redCenter[0] - 6, -redCenter[1]-1, redCenter[2]);
+            redMotif.position = new Vector3(-redCenter[0] + 3, -redCenter[1], redCenter[2]);
             motifRef.current.push(redMotif); // Add red motif to the array
-    
             const { motif: blueMotif, center: blueCenter } = await getMotif(
               "1Y26.json",
               "0x0000ff", // Blue color
@@ -77,7 +77,7 @@ const BabylonCanvas: React.FC = () => {
               1,
               scene
             );
-            blueMotif.position = new Vector3(-blueCenter[0] + 4.5, -blueCenter[1]-1, blueCenter[2]);
+            blueMotif.position = new Vector3(-blueCenter[0] - 3, -blueCenter[1], blueCenter[2]);
             motifRef.current.push(blueMotif); // Add blue motif to the array
           } catch (error) {
             console.error("Error loading motif:", error);
@@ -85,8 +85,9 @@ const BabylonCanvas: React.FC = () => {
     
           // Set initial scaling and position
           motifRef.current.forEach((motif, index) => {
-            motif.scaling = new Vector3(0.05, 0.05, 0.05);
-            motif.position.x += 3 * index; // Spread motifs in the x-direction
+            const aspectRatio = window.innerWidth / 20000
+            const scale = 0.3;
+            motif.scaling = new Vector3(aspectRatio * scale, aspectRatio * scale, aspectRatio * scale);
           });
         };
         loadMotif();
@@ -102,7 +103,7 @@ const BabylonCanvas: React.FC = () => {
     // Event lister to handle resizing.
     const resizeHandler = () => {
       engine.resize();
-      scaleMotif(engine, scene, .5); // Scale the motif when resizing
+      scaleMotif(engine, scene, 0.3); // Scale the motif when resizing
     };
     window.addEventListener("resize", resizeHandler);
     //Clean up after unmounting..
