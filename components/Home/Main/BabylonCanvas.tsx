@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Engine,
   Scene,
@@ -6,7 +6,9 @@ import {
   HemisphericLight,
   Vector3,
   DirectionalLight,
+  Mesh,
 } from "@babylonjs/core";
+
 import { getMotif } from "@/functions/GetMotif";
 
 // Initialize the canvas function that returns engine and scene.
@@ -37,6 +39,7 @@ function initializeCanvas(canvasRef: HTMLCanvasElement | null) {
 // Declaring the babylon canvas.
 const BabylonCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const motifRef = useRef<Mesh | null>(null);
   useEffect(() => {
     // Initializing the canvas.
     const {engine, scene} = initializeCanvas(canvasRef.current)
@@ -44,9 +47,10 @@ const BabylonCanvas: React.FC = () => {
     // Load a motif from the public directory.
     const loadMotif = async () => {
         try {
-          const { motif, center } = await getMotif("1Y26.json", "0xcc2900", 0xff3300, scene);
-          console.log(center)
+          const { motif, center } = await getMotif("1Y26.json", "0xcc2900", 0xff3300, 1, scene);
           motif.position = new Vector3(-center[0], -center[1], center[2]);
+          // motif.position = new Vector3(0,0,0)
+          motifRef.current = motif;
         } catch (error) {
           console.error("Error loading motif:", error);
         }
@@ -54,6 +58,10 @@ const BabylonCanvas: React.FC = () => {
     loadMotif();
     //Render loop.
     engine.runRenderLoop(() => {
+      if (motifRef.current) {
+        // Apply a slow rotation on each frame
+        motifRef.current.rotation.y += 0.01; // Adjust the value for faster/slower rotation
+      }
       scene.render();
     });
     // Event lister to handle resizing.

@@ -61,7 +61,9 @@ async function addChildrenFromJson(
     center[1] /= i;
     center[2] /= i;
     // Set the center as the pivot point
+    const center3 = new BABYLON.Vector3(center[0], center[1], center[2])
     motif.setPivotPoint(new BABYLON.Vector3(center[0], center[1], center[2]));
+    motif.position = center3
     return center;
 }
 
@@ -69,6 +71,7 @@ export async function getMotif(
     motifJSONFileName: string,
     motifColorHex: String = 'cc2900',
     highLightColorHex: number = 0xff3300,
+    scale: number = 1,
     scene: BABYLON.Scene
   ): Promise<{ motif: BABYLON.Mesh; center: number[] }> {
     // Create a new custom mesh for the motif
@@ -78,6 +81,7 @@ export async function getMotif(
     try {
       const myMaterial = createBabylonMaterial(motifColorHex, scene);
       center = await addChildrenFromJson(motif, myMaterial, motifJSONFileName, scene);
+      motif.scaling = new BABYLON.Vector3(scale, scale, scale);
     } catch (error) {
       console.error("Error fetching or parsing motif JSON:", error);
     }
