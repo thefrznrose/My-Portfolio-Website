@@ -85,7 +85,7 @@ function roundPositions(positions: number[], precision: number): number[] {
       const center3 = new BABYLON.Vector3(center[0], center[1], center[2])
       motif.setPivotPoint(center3);
       motif.position = center3;
-  
+      
       return center;
   }
 
@@ -104,6 +104,7 @@ export async function getMotif(
       const myMaterial = createBabylonMaterial(motifColorHex, scene);
       center = await addChildrenFromJson(motif, myMaterial, motifJSONFileName, scene);
       motif.scaling = new BABYLON.Vector3(scale, scale, scale);
+      motif.metadata = motifColorHex
     } catch (error) {
       console.error("Error fetching or parsing motif JSON:", error);
     }

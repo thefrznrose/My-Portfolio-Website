@@ -45,7 +45,8 @@ function initializeCanvas(canvasRef: HTMLCanvasElement | null) {
 const BabylonCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const motifRef = useRef<Mesh[]>([]); // Array to hold multiple motifs
-
+  const defaultRotationSpeed = 0.005;
+  let currentRotationSpeed = 0.005;
 
   const scaleMotif = (engine: Engine, scene: Scene, scale: number) => {
     const aspectRatio = window.innerWidth / 20000;
@@ -94,43 +95,28 @@ const BabylonCanvas: React.FC = () => {
         };
         loadMotif();
         
-        // Scroll-based color change
     const handleScroll = () => {
-      const scrollTop = window.scrollY; // Current scroll position
-      console.log(scrollTop)
-      const maxScroll = document.body.scrollHeight - window.innerHeight; // Maximum scrollable height
-      const scrollPercentage = scrollTop / maxScroll; // Scroll percentage (0 to 1)
-
-      // Calculate color based on scroll percentage
-      const redValue = Math.round(255 * (1 - scrollPercentage));
-      const blueValue = Math.round(255 * scrollPercentage);
-
-      motifRef.current.forEach((motif) => {
-        motif.getChildren().forEach((child) => {
-          if (child instanceof Mesh) { // Ensure the child is a Mesh
-        const material = child.material as StandardMaterial | null;
-        if (material) {
-          material.diffuseColor = new Color3(redValue / 255, 0, blueValue / 255);
-        }
-      }
-        });
-      });
+      currentRotationSpeed += .0015;
     };
     
     window.addEventListener("scroll", handleScroll);
 
-      engine.runRenderLoop(() => {
-        motifRef.current.forEach((motif) => {
-          // Apply a slow rotation on each frame
-          motif.rotation.y += 0.005; // Adjust the value for faster/slower rotation
-          motif.rotation.x += 0.005;
-        });
-        scene.render();
+    engine.runRenderLoop(() => {
+      if (currentRotationSpeed > defaultRotationSpeed){
+        currentRotationSpeed = currentRotationSpeed -0.0001
+      }
+      motifRef.current.forEach((motif) => {
+        // Apply a slow rotation on each frame
+        motif.rotation.y += currentRotationSpeed/10;
+        motif.rotation.x += currentRotationSpeed;
       });
+      scene.render();
+    });
+
     // Event lister to handle resizing.
     const resizeHandler = () => {
       engine.resize();
-      scaleMotif(engine, scene, 0.3); // Scale the motif when resizing
+      scaleMotif(engine, scene, 0.3); 
     };
     window.addEventListener("resize", resizeHandler);
     //Clean up after unmounting..
