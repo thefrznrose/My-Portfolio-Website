@@ -1,5 +1,5 @@
 import React from "react";
-import RNAnnotations from "./Projects/RNAnnotations";
+import RNAnnotations from "./RNAnnotations";
 import CodeOrientedOralExamManager from "./Projects/CodeOrientedOralExamManager";
 import DisceRNA from "./Projects/DisceRNA";
 import BasePairing from "./Projects/BasePairing";

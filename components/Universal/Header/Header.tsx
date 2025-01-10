@@ -5,7 +5,6 @@ import SeeResumeButton from "./SeeResumeButton";
 
 export default function Header() {
   const isMobile = useMediaQuery('(max-width: 768px)');
-
   return (
     <div>
       <Flex
@@ -17,7 +16,7 @@ export default function Header() {
         style={{ padding: '1rem' }}
       >
         <a href="./">Home</a>
-        <a href="./">About Me (CV + Resume)</a>
+        <a href="./">About Me</a>
         <a href="./">Projects</a>
         <a href="https://www.linkedin.com/in/shaun-rose-a88752231/" target="_blank" rel="noopener noreferrer">
           LinkedIn

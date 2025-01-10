@@ -48,7 +48,7 @@ export default function BasePairing () {
                 {description}
             </Text>
             <Button>
-                See Code Oriented Oral Exam Manager
+                See Curated Benchmark Dataset for RNA Base Pair Annotations
             </Button>
         </div>
         </Flex>

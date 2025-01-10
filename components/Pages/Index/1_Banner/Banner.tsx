@@ -4,12 +4,23 @@ import Welcome from "./Welcome/Welcome";
 export default function Banner() {
   return (
     <>
-    <div style={{ position: 'relative', width: '100vw', height: '50vh', overflow: 'hidden' }}>
-      <div>
-        <BabylonCanvas />
+      <div
+        style={{
+          position: "relative",
+          width: "100vw",
+          height: "80vh",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            transform: "translate(-0%, 10%)", // Shift to perfectly center both axes
+          }}
+        >
+          <BabylonCanvas />
+          <Welcome />
+        </div>
       </div>
-      <Welcome/>
-    </div>
     </>
-    );
+  );
 }
