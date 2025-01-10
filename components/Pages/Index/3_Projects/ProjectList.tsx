@@ -1,6 +1,8 @@
 import { Divider } from "@mantine/core";
 import ProjectListItem from "./ProjectListItem";
 import React from "react";
+import RNAnnotations from "./RNAnnotations";
+import CodeOrientedOralExamManager from "./CodeOrientedOralExamManager";
 
 export default function ProjectList() {
   const projects = [
@@ -23,22 +25,13 @@ export default function ProjectList() {
       gifSrc: "/tempGIF.gif",
     },
     {
-      title: "RNAnnotations",
-      bulletPoints: [
-        "Created a tool for annotating RNA motifs to support professional RNA researchers.",
-        "Utilized Next.js and THREE.js to visualize structural motifs in 3D.",
-        "Integrated features for tagging and classifying RNA structures into families based on their annotations.",
-      ],
-      gifSrc: "/tempGIF.gif",
-    },
-    {
       title: "Curated Benchmark Dataset for RNA Base Pair Annotations",
       bulletPoints: [
         "Led the creation of a benchmark dataset for RNA motif base pair annotations.",
         "Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation.",
         "Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work.",
       ],
-      gifSrc: "/tempGIF.gif",
+      gifSrc: "Images/BasePairing_2024CSUMBResearchSymposium.jpg",
     },
     {
       title: "Code-Oriented Oral Exam Manager",
@@ -53,6 +46,8 @@ export default function ProjectList() {
   
   return (
     <>
+    <RNAnnotations/>
+    <CodeOrientedOralExamManager/>
       {projects.map((project) => (
         <React.Fragment key={project.title}>
           <ProjectListItem
