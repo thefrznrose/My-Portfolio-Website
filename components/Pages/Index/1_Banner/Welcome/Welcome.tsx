@@ -24,7 +24,7 @@ export default function Welcome() {
       }}
     >
       <Image
-        src="/my-headshot.jpg"
+        src="/Images/my-headshot.jpg"
         alt="Your Name"
         style={{
           width: "300px", // Set the width

@@ -3,6 +3,8 @@ import ProjectListItem from "./ProjectListItem";
 import React from "react";
 import RNAnnotations from "./RNAnnotations";
 import CodeOrientedOralExamManager from "./CodeOrientedOralExamManager";
+import DisceRNA from "./DisceRNA";
+import BasePairing from "./BasePairing";
 
 export default function ProjectList() {
   const projects = [
@@ -47,7 +49,9 @@ export default function ProjectList() {
   return (
     <>
     <RNAnnotations/>
+    <BasePairing/>
     <CodeOrientedOralExamManager/>
+    <DisceRNA/>
       {projects.map((project) => (
         <React.Fragment key={project.title}>
           <ProjectListItem

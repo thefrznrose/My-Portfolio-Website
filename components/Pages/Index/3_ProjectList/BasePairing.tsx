@@ -1,11 +1,14 @@
-import { Flex, Image, Text } from "@mantine/core";
+import { Button, Flex, Image, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
-export default function CodeOrientedOralExamManager () {
+export default function BasePairing () {
     const matches = useMediaQuery('(max-width: 768px)'); 
     
-    const description = "Led the creation of a benchmark dataset for RNA motif base pair annotations. Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation. Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work."
-
+    const description = `
+        Led the creation of a benchmark dataset for RNA motif base pair annotations.
+        Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation.
+        Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work.
+    `
      return (
         <Flex
           direction={matches ? 'column' : 'row'}  
@@ -16,8 +19,8 @@ export default function CodeOrientedOralExamManager () {
           style={{ padding: '2rem' }}
         >
         <Image
-            src={'Images/CodeOrientedOralExamManager_CapstonePoster.jpg'}
-            alt={"CodeOrientedOralExamManager"}
+            src={'Images/BasePairing_2024CSUMBResearchSymposium.jpg'}
+            alt={"BasePairing_2024CSUMBResearchSymposium"}
             style={{
             width: '100%',
             maxHeight: '400px',  
@@ -39,11 +42,14 @@ export default function CodeOrientedOralExamManager () {
                     fontSize: '1.5rem' 
                 }}
             >
-                {"Code Oriented Oral Exam Manager"}
+                {"Curated Benchmark Dataset for RNA Base Pair Annotations"}
             </Text>
             <Text>
                 {description}
             </Text>
+            <Button>
+                See Code Oriented Oral Exam Manager
+            </Button>
         </div>
         </Flex>
       );

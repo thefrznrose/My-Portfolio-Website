@@ -1,7 +1,7 @@
-import { Flex, Image, Text } from "@mantine/core";
+import { Button, Flex, Image, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
-export default function RNAnnotations () {
+export default function CodeOrientedOralExamManager () {
     const matches = useMediaQuery('(max-width: 768px)'); 
     
     const description = "Led the creation of a benchmark dataset for RNA motif base pair annotations. Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation. Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work."
@@ -16,17 +16,8 @@ export default function RNAnnotations () {
           style={{ padding: '2rem' }}
         >
         <Image
-            src={'Images/Sacnas24_PosterWithIslam.jpg'}
-            alt={"Sacnas24_PosterWithIslam"}
-            style={{
-            width: '100%',
-            maxHeight: '400px',  
-            objectFit: 'contain',  
-            }}
-        />
-        <Image
-            src={'Images/TaggingProjectPoster_Final.jpg'}
-            alt={"TaggingProjectPoster_Final"}
+            src={'Images/CodeOrientedOralExamManager_CapstonePoster.jpg'}
+            alt={"CodeOrientedOralExamManager"}
             style={{
             width: '100%',
             maxHeight: '400px',  
@@ -48,11 +39,14 @@ export default function RNAnnotations () {
                     fontSize: '1.5rem' 
                 }}
             >
-                {"RNAnnotations"}
+                {"Code Oriented Oral Exam Manager"}
             </Text>
             <Text>
                 {description}
             </Text>
+            <Button>
+                See Code Oriented Oral Exam Manager
+            </Button>
         </div>
         </Flex>
       );
