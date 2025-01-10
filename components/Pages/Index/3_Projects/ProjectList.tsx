@@ -1,5 +1,5 @@
 import { Divider } from "@mantine/core";
-import ProjectListItem from "./ListItems/ProjectListItem";
+import ProjectListItem from "./ProjectListItem";
 import React from "react";
 
 export default function ProjectList() {

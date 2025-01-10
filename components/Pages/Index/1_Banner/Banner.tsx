@@ -1,7 +1,21 @@
 import { Container, Image, Text } from "@mantine/core";
+import BabylonCanvas from "./BabylonCanvas";
 
 export default function Banner() {
   return (
+    <div style={{ position: 'relative', width: '100vw', height: '50vh', overflow: 'hidden' }}>
+    <div>
+      <BabylonCanvas />
+    </div>
+    <div
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      zIndex: 10,
+    }}
+    >
     <Container
       size="sm"
       style={{
@@ -24,12 +38,28 @@ export default function Banner() {
         }}
       />
 
-      <Text component="h1" size="xl" mt="lg">
+      <Text
+        component="h1"
+        size="xl"
+        style={{
+          fontWeight: 700,
+          fontSize: "2.5rem", // Increase font size
+        }}
+        mt="lg"
+      >
         Hello, I'm Shaun Rose
       </Text>
-      <Text size="md" mt="sm">
+      <Text
+        size="lg" // Larger size
+        mt="sm"
+        style={{
+          fontWeight: 700
+        }}
+      >
         Welcome to my portfolio!
       </Text>
     </Container>
-  );
+    </div>
+  </div>
+    );
 }

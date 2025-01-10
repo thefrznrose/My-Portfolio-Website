@@ -1,5 +1,7 @@
 import { Divider, Flex } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import SeeCVButton from "./SeeCVButton";
+import SeeResumeButton from "./SeeResumeButton";
 
 export default function Header() {
   const isMobile = useMediaQuery('(max-width: 768px)');
@@ -23,6 +25,8 @@ export default function Header() {
         <a href="https://github.com/thefrznrose" target="_blank" rel="noopener noreferrer">
           Github
         </a>
+        <SeeCVButton/>
+        <SeeResumeButton/>
       </Flex>
       <Divider my="md" />
     </div>

@@ -101,17 +101,28 @@ const BabylonCanvas: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
 
     engine.runRenderLoop(() => {
-      if (currentRotationSpeed > defaultRotationSpeed){
-        const rotationDrag = 0.0002;
-        currentRotationSpeed = currentRotationSpeed - rotationDrag;
+      const dragFactor = 0.01; 
+      const rotationDrag = (currentRotationSpeed - defaultRotationSpeed) * dragFactor;
+    
+      if (currentRotationSpeed > defaultRotationSpeed) {
+        currentRotationSpeed -= rotationDrag;
+      } else if (currentRotationSpeed < defaultRotationSpeed) {
+        currentRotationSpeed += rotationDrag; // If speed drops below default, restore it
       }
+    
+      if (Math.abs(currentRotationSpeed - defaultRotationSpeed) < 0.00001) {
+        currentRotationSpeed = defaultRotationSpeed;
+      }
+    
       motifRef.current.forEach((motif) => {
         // Apply a slow rotation on each frame
-        motif.rotation.y += currentRotationSpeed/10;
+        motif.rotation.y += currentRotationSpeed / 10;
         motif.rotation.x += currentRotationSpeed;
       });
+    
       scene.render();
     });
+    
 
     // Event lister to handle resizing.
     const resizeHandler = () => {
