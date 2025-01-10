@@ -1,7 +1,9 @@
 import { Button, Flex, Image, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { useRouter } from "next/router";
 
 export default function DisceRNA () {
+    const router = useRouter(); // Initialize the router
     const matches = useMediaQuery('(max-width: 768px)'); 
     
     const description = "Led the creation of a benchmark dataset for RNA motif base pair annotations. Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation. Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work."
@@ -44,8 +46,10 @@ export default function DisceRNA () {
             <Text>
                 {description}
             </Text>
-            <Button>
-                See Code Oriented Oral Exam Manager
+            <Button
+                onClick={() => window.open("https://rna3d.org/play", "_blank")}
+                >
+                See DisceRNA Deployment
             </Button>
         </div>
         </Flex>

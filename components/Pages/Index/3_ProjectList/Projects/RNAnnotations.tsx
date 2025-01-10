@@ -45,7 +45,11 @@ export default function RNAnnotations () {
             >
                 <Text component="h3" style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>{"RNAnnotations"}</Text>
                 <Text>{description}</Text>
-                <Button>See RNAnnotations</Button>
+                <Button
+                    onClick={() => window.open("https://research.rna3d.org/", "_blank")}
+                >
+                    See RNAnnotations Deployment
+                </Button>
             </div>
         </Flex>
       );
