@@ -20,7 +20,7 @@ function initializeCanvas(canvasRef: HTMLCanvasElement | null) {
   // Initilizing the engine and scene.
   const engine = new Engine(canvasRef, true);
   const scene = new Scene(engine);
-  scene.clearColor = new Color4(1, 1, 1, 1); // RGBA for white (alpha = 1 for full opacity)
+  scene.clearColor = new Color4(1, 1, 1, 1); 
 
   //Initializing the camera.
   const camera = new ArcRotateCamera(
@@ -31,7 +31,6 @@ function initializeCanvas(canvasRef: HTMLCanvasElement | null) {
     new Vector3(0, 0, 0), 
     scene
   );
-  // camera.attachControl(canvasRef, false);
   //Initializing the light.
   const light = new HemisphericLight("light", new Vector3(0, 1, 0), scene);
   light.intensity = 0.8;
@@ -44,7 +43,7 @@ function initializeCanvas(canvasRef: HTMLCanvasElement | null) {
 // Declaring the babylon canvas.
 const BabylonCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const motifRef = useRef<Mesh[]>([]); // Array to hold multiple motifs
+  const motifRef = useRef<Mesh[]>([]); 
   const defaultRotationSpeed = 0.005;
   let currentRotationSpeed = 0.005;
 
@@ -103,7 +102,8 @@ const BabylonCanvas: React.FC = () => {
 
     engine.runRenderLoop(() => {
       if (currentRotationSpeed > defaultRotationSpeed){
-        currentRotationSpeed = currentRotationSpeed -0.0001
+        const rotationDrag = 0.0002;
+        currentRotationSpeed = currentRotationSpeed - rotationDrag;
       }
       motifRef.current.forEach((motif) => {
         // Apply a slow rotation on each frame
