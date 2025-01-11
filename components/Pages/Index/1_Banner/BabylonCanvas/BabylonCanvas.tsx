@@ -47,52 +47,59 @@ const BabylonCanvas: React.FC = () => {
   const defaultRotationSpeed = 0.005;
   let currentRotationSpeed = 0.005;
 
-  const scaleMotif = (engine: Engine, scene: Scene, scale: number) => {
-    const aspectRatio = window.innerWidth / 20000;
-    // console.log(aspectRatio)
-    if(aspectRatio > 0.7) {
-      motifRef.current.forEach((motif) => {
-        motif.scaling = new Vector3(aspectRatio * scale, aspectRatio * scale, aspectRatio * scale);
-      });
+  const scaleMotif = (scene: Scene, baseScale: number) => {
+    const width = window.innerWidth;
+  
+    // Dynamically adjust scaling based on screen width
+    let aspectScale = width / 15000; // Default scale factor
+    if (width < 768) {
+      // Phones
+      aspectScale = width / 10000;
+    } else if (width < 1024) {
+      // Tablets
+      aspectScale = width / 15000;
     }
+  
+    const finalScale = Math.max(aspectScale * baseScale, 0.035); // Clamp to prevent overly small motifs
+    motifRef.current.forEach((motif) => {
+      motif.scaling = new Vector3(finalScale, finalScale, finalScale);
+    });
   };
+  
   
   useEffect(() => {
     // Initializing the canvas.
     const {engine, scene} = initializeCanvas(canvasRef.current)
     if (!engine || !scene) return;
-        const loadMotif = async () => {
-          try {
-            const { motif: redMotif, center: redCenter } = await getMotif(
-              "1Y26.json",
-              "0xcc2900", // Red color
-              0xff3300,
-              1,
-              scene
-            );
-            redMotif.position = new Vector3(-redCenter[0] + 3, -redCenter[1], redCenter[2]);
-            motifRef.current.push(redMotif); // Add red motif to the array
-            const { motif: blueMotif, center: blueCenter } = await getMotif(
-              "1Y26.json",
-              "0x0000ff", // Blue color
-              0x0000cc,
-              1,
-              scene
-            );
-            blueMotif.position = new Vector3(-blueCenter[0] - 3, -blueCenter[1], blueCenter[2]);
-            motifRef.current.push(blueMotif); // Add blue motif to the array
-          } catch (error) {
-            console.error("Error loading motif:", error);
-          }
+    const loadMotif = async () => {
+      try {
+        const { motif: redMotif, center: redCenter } = await getMotif(
+          "1Y26.json",
+          "0xcc2900", // Red color
+          0xff3300,
+          1,
+          scene
+        );
+        redMotif.position = new Vector3(-redCenter[0] + 3, -redCenter[1], redCenter[2]);
+        motifRef.current.push(redMotif); // Add red motif to the array
     
-          // Set initial scaling and position
-          motifRef.current.forEach((motif, index) => {
-            const aspectRatio = window.innerWidth / 20000
-            const scale = 0.3;
-            motif.scaling = new Vector3(aspectRatio * scale, aspectRatio * scale, aspectRatio * scale);
-          });
-        };
-        loadMotif();
+        const { motif: blueMotif, center: blueCenter } = await getMotif(
+          "1Y26.json",
+          "0x0000ff", // Blue color
+          0x0000cc,
+          1,
+          scene
+        );
+        blueMotif.position = new Vector3(-blueCenter[0] - 3, -blueCenter[1], blueCenter[2]);
+        motifRef.current.push(blueMotif); // Add blue motif to the array
+    
+        // Apply scaling after loading motifs
+        scaleMotif(scene, 0.3);
+      } catch (error) {
+        console.error("Error loading motif:", error);
+      }
+    };
+    loadMotif();
         
     const handleScroll = () => {
       currentRotationSpeed += .0015;
@@ -123,12 +130,13 @@ const BabylonCanvas: React.FC = () => {
       scene.render();
     });
     
-
-    // Event lister to handle resizing.
+    // Add resize handling
     const resizeHandler = () => {
       engine.resize();
-      scaleMotif(engine, scene, 0.3); 
+      scaleMotif(scene, 0.3);
     };
+    window.addEventListener("resize", resizeHandler);
+
     window.addEventListener("resize", resizeHandler);
     //Clean up after unmounting..
     return () => {
