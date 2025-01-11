@@ -1,6 +1,6 @@
 import { Divider, Flex } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { FaLinkedin, FaGithub } from "react-icons/fa"; // Import LinkedIn and GitHub icons
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import SeeCVButton from "./SeeCVButton";
 import SeeResumeButton from "./SeeResumeButton";
 
@@ -10,36 +10,52 @@ export default function Header() {
   return (
     <div>
       <Flex
-        direction={isMobile ? "column" : "row"}
+        direction="row" // Always use a row layout
         align="center"
-        justify="center"
-        wrap="wrap"
-        gap="xl"
-        style={{ padding: "1rem" }}
+        justify="space-between" // Spread items evenly
+        wrap="wrap" // Allow wrapping to prevent overlap
+        gap={isMobile ? "md" : "xl"} // Adjust gap for mobile vs larger screens
+        style={{
+          padding: isMobile ? "0.5rem" : "1rem", // Adjust padding for screen size
+          flexWrap: "wrap", // Prevent overflow
+          fontSize: isMobile ? "0.85rem" : "1rem", // Responsive font size
+        }}
       >
-        <a href="./">Home</a>
-        <a href="./">About Me</a>
-        <a href="./">Projects</a>
-        {/* LinkedIn Icon */}
+        <a href="./" style={{ flex: "1 0 auto", textAlign: "center" }}>Home</a>
+        <a href="./" style={{ flex: "1 0 auto", textAlign: "center" }}>About Me</a>
+        <a href="./" style={{ flex: "1 0 auto", textAlign: "center" }}>Projects</a>
         <a
           href="https://www.linkedin.com/in/shaun-rose-a88752231/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ fontSize: "1.5rem", color: "#0077b5" }} // Optional styling for LinkedIn icon
+          style={{
+            flex: "1 0 auto",
+            fontSize: "1.5rem",
+            color: "#0077b5",
+            textAlign: "center",
+          }}
         >
           <FaLinkedin />
         </a>
-        {/* GitHub Icon */}
         <a
           href="https://github.com/thefrznrose"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ fontSize: "1.5rem", color: "#333" }} // Optional styling for GitHub icon
+          style={{
+            flex: "1 0 auto",
+            fontSize: "1.5rem",
+            color: "#333",
+            textAlign: "center",
+          }}
         >
           <FaGithub />
         </a>
-        <SeeCVButton />
-        <SeeResumeButton />
+        <div style={{ flex: "1 0 auto", textAlign: "center" }}>
+          <SeeCVButton />
+        </div>
+        <div style={{ flex: "1 0 auto", textAlign: "center" }}>
+          <SeeResumeButton />
+        </div>
       </Flex>
       <Divider my="md" />
     </div>
