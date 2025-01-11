@@ -1,11 +1,20 @@
-import { Divider, Flex } from "@mantine/core";
+import { Button, Divider, Flex } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import SeeCVButton from "./SeeCVButton";
 import SeeResumeButton from "./SeeResumeButton";
+import { IconPdf } from "@tabler/icons-react";
 
 export default function Header() {
   const isMobile = useMediaQuery("(max-width: 768px)");
+
+  function HandleOpenCVAsPDF() {
+    window.open('/ShaunRose_Resume_12_23_24.pdf', '_blank');
+  }
+
+  function HandleOpenResumeAsPDF() {
+    window.open('/ShaunRose_Resume_12_23_24.pdf', '_blank');
+  }
 
   return (
     <div>
@@ -50,12 +59,22 @@ export default function Header() {
         >
           <FaGithub />
         </a>
-        <div style={{ flex: "1 0 auto", textAlign: "center" }}>
-          <SeeCVButton />
+        {/* <div style={{ flex: "1 0 auto", textAlign: "center" }}>
+          <Button 
+              rightSection={<IconPdf size={14} />}
+              onClick={() => HandleOpenCVAsPDF()}
+          >
+            See Curriculum Vitae
+          </Button>
         </div>
         <div style={{ flex: "1 0 auto", textAlign: "center" }}>
-          <SeeResumeButton />
-        </div>
+          <Button 
+            rightSection={<IconPdf size={14} />}
+            onClick={() => HandleOpenResumeAsPDF()}
+          >
+              See Resume
+          </Button>
+        </div> */}
       </Flex>
       <Divider my="md" />
     </div>

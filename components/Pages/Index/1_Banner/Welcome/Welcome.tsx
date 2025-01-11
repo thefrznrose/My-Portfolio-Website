@@ -76,7 +76,7 @@ export default function Welcome() {
               src="/Images/my-headshot.jpg"
               alt="Your Name"
               style={{
-                width: "clamp(150px, 25vw, 300px)", // Scales between 150px and 300px based on viewport width
+                width: "clamp(100px, 20vw, 300px)", // Scales between 150px and 300px based on viewport width
                 height: "auto", // Maintains aspect ratio
                 borderRadius: "50%",
                 objectFit: "cover",
