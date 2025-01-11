@@ -1,27 +1,27 @@
 import { Container, Text, Image } from "@mantine/core";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 export default function Welcome() {
   const [hover, setHover] = useState(false);
-  const [rotationAngle, setRotationAngle] = useState(0); // Tracks the current angle of rotation
-  const [speed, setSpeed] = useState(0.5); // Default rotation speed in degrees per interval
-  const defaultSpeed = 0.5; // Default rotation speed
-  const maxSpeed = 10; // Maximum speed multiplier on scroll
-  const slowDownRate = 0.25; // Rate at which speed decreases back to default
+  const [rotationAngle, setRotationAngle] = useState(0); // Current rotation angle
+  const [speed, setSpeed] = useState(0.5); // Current rotation speed
+  const defaultSpeed = 0.5;
+  const maxSpeed = 10;
+  const slowDownRate = 0.25;
 
   useEffect(() => {
-    // Rotation logic: update angle based on speed
+    // Update rotation angle at a consistent interval
     const interval = setInterval(() => {
-      setRotationAngle((prev) => (prev + speed) % 360); // Keep angle within 0-360
-    }, 16); // Approx 60 FPS
+      setRotationAngle((prev) => (prev + speed) % 360);
+    }, 16); // Approximately 60 FPS
 
     return () => clearInterval(interval);
   }, [speed]);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Increase speed when scrolling
-      setSpeed((prev) => Math.min(prev + 0.5, maxSpeed)); // Increase speed up to maxSpeed
+      // Increase speed on scroll, up to a maximum value
+      setSpeed((prev) => Math.min(prev + 0.5, maxSpeed));
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -29,12 +29,12 @@ export default function Welcome() {
   }, []);
 
   useEffect(() => {
-    // Gradually reduce speed back to default
+    // Gradually reduce speed back to the default value
     const slowDown = setInterval(() => {
       setSpeed((prev) =>
         prev > defaultSpeed ? Math.max(prev - slowDownRate, defaultSpeed) : prev
       );
-    }, 100); // Adjust speed every 100ms
+    }, 100);
 
     return () => clearInterval(slowDown);
   }, []);
@@ -64,7 +64,7 @@ export default function Welcome() {
           <div
             style={{
               borderRadius: "50%",
-              padding: "5px", // Space between the image and border
+              padding: "5px",
               background: `linear-gradient(${rotationAngle}deg, red, orange, yellow, green, blue, indigo, violet)`,
               backgroundSize: "400% 400%",
               transition: hover ? "background 0.3s ease" : "none",
@@ -76,11 +76,13 @@ export default function Welcome() {
               src="/Images/my-headshot.jpg"
               alt="Your Name"
               style={{
-                width: "350px",
+                width: "clamp(150px, 25vw, 300px)", // Scales between 150px and 300px based on viewport width
+                height: "auto", // Maintains aspect ratio
                 borderRadius: "50%",
                 objectFit: "cover",
               }}
             />
+
           </div>
           <Text
             component="h1"
