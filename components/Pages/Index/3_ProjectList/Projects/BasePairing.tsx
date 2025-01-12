@@ -26,6 +26,15 @@ export default function BasePairing() {
                 }}
             >
                 <Image
+                    src={'Images/BasePairing_Slide.png'}
+                    alt={"BasePairing_Slide"}
+                    style={{
+                        width: '100%',
+                        maxHeight: '300px',
+                        objectFit: 'contain',
+                    }}
+                />
+                <Image
                     src={'Images/BasePairing_2024CSUMBResearchSymposium.jpg'}
                     alt={"BasePairing_2024CSUMBResearchSymposium"}
                     style={{

@@ -3,11 +3,15 @@ import { useMediaQuery } from "@mantine/hooks";
 import { useRouter } from "next/router";
 
 export default function DisceRNA() {
-    const router = useRouter(); // Initialize the router
     const matches = useMediaQuery('(max-width: 768px)'); 
     
-    const description = "Led the creation of a benchmark dataset for RNA motif base pair annotations. Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation. Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work.";
-
+    const description = `
+        DisceRNA is a gamified web platform that engages citizen scientists in analyzing and categorizing RNA 3D motif structures. 
+        The project’s frontend was developed using Next.js, while the backend was built with Nest.js, supported by a MySQL relational database and a Minerva file server for managing customized 3D geometry files. 
+        My contributions focused heavily on designing the system architecture, creating UML diagrams, and specifying detailed requirements and control schemes. 
+        By emphasizing design, I ensured a cohesive user experience and a clear structure for gameplay mechanics, enabling researchers to derive actionable insights from user-generated similarity scores.
+    `
+    
     return (
         <Flex
             direction={matches ? 'column' : 'row'}

@@ -4,7 +4,12 @@ import { useMediaQuery } from "@mantine/hooks";
 export default function CodeOrientedOralExamManager() {
     const matches = useMediaQuery('(max-width: 768px)'); 
     
-    const description = "Led the creation of a benchmark dataset for RNA motif base pair annotations. Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation. Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work.";
+    const description = `
+        As a lead developer, I contributed to the design and implementation of a web-based oral exam platform for assessing student programming skills. 
+        Using technologies like Node.js, Mantine UI, and REST APIs, I architected the core functionalities, including standardized question types (general, keyword-based, and context-specific) and video optimization tools to streamline instructor workflows. 
+        My work reduced video assessment time by 20%, improved scalability with automated scheduling, and laid the groundwork for future AI integration to analyze responses and generate adaptive questions. 
+        This project enhances academic integrity and student engagement in programming assessments.
+    `
 
     return (
         <Flex

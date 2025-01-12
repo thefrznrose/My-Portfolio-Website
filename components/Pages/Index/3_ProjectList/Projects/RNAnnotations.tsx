@@ -4,9 +4,9 @@ import { useMediaQuery } from "@mantine/hooks";
 export default function RNAnnotations() {
     const matches = useMediaQuery('(max-width: 768px)');
     const description = `
-        Led the creation of a benchmark dataset for RNA motif base pair annotations. 
-        Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation. 
-        Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work.
+        As a co-developer of RNAnnotations, I contributed to creating an innovative tool for visualizing, annotating, and classifying non-coding RNA (ncRNA) 3D structural motifs. 
+        The platform allows researchers to use tags for feature identification, classify motifs based on root mean squared deviation (RMSD) similarity scores, and collaborate by sharing and reviewing annotations. 
+        Designed to overcome limitations of existing tools, RNAnnotations enables comparative analysis, fosters collaboration, and helps uncover relationships among RNA motifs to provide insights into their biological functions.
     `;
 
     return (

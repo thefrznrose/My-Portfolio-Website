@@ -4,8 +4,11 @@ import { useMediaQuery } from "@mantine/hooks";
 export default function BigSurLandTrust() {
     const matches = useMediaQuery('(max-width: 768px)'); 
     
-    const description = "Led the creation of a benchmark dataset for RNA motif base pair annotations. Merged tools like CLARNA, FR3D, MC Annotate, DSSR, RNAVIew, and RNA Motif Atlas for dataset generation. Won 3rd place at the 2024 CSUMB Undergraduate Research Symposium for this work.";
-
+    const description = `
+        As the designer and full-stack developer for this citizen science platform, I created an interactive web service to monitor forest fire recovery in the Mittledorf Preserve. 
+        Leveraging technologies like Next.js, Express.js, MoviePy, and FFmpeg, I implemented key features, including photo uploads with metadata, timelapse generation, and offline upload capabilities with photo caching. 
+        Additionally, I integrated real-time location tracking to improve data accuracy in low-service areas, ensuring a seamless user experience for contributors.
+    `
     return (
         <Flex
             direction={matches ? 'column' : 'row'}  

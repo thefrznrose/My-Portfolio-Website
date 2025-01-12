@@ -10,9 +10,9 @@ export default function ProjectList() {
     <>
     <RNAnnotations/>
     <BasePairing/>
-    <CodeOrientedOralExamManager/>
     <DisceRNA/>
     <BigSurLandTrust/>
+    <CodeOrientedOralExamManager/>
     </>
   );
 }
