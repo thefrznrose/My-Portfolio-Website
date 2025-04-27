@@ -1,9 +1,6 @@
-import { Button, Divider, Flex } from "@mantine/core";
+import { Divider, Flex } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
-import SeeCVButton from "./SeeCVButton";
-import SeeResumeButton from "./SeeResumeButton";
-import { IconPdf } from "@tabler/icons-react";
 
 export default function Header() {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -30,9 +27,9 @@ export default function Header() {
           fontSize: isMobile ? "0.85rem" : "1rem", // Responsive font size
         }}
       >
-        <a href="./" style={{ flex: "1 0 auto", textAlign: "center" }}>Home</a>
-        <a href="./" style={{ flex: "1 0 auto", textAlign: "center" }}>About Me</a>
-        <a href="./" style={{ flex: "1 0 auto", textAlign: "center" }}>Projects</a>
+        <a href="./" style={{ flex: "1 0 auto", textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>Home</a>
+        <a href="./" style={{ flex: "1 0 auto", textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>About Me</a>
+        <a href="./" style={{ flex: "1 0 auto", textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>Projects</a>
         <a
           href="https://www.linkedin.com/in/shaun-rose-a88752231/"
           target="_blank"

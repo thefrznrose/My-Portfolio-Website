@@ -1,10 +1,12 @@
-import { Flex } from "@mantine/core";
+import { Divider, Flex } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 
 export default function Footer() {
   const isMobile = useMediaQuery('(max-width: 768px)');
   return (
+    
     <div>
+      <Divider my="md" />
       <Flex
         direction={isMobile ? "column" : "row"}
         align="center" 

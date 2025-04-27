@@ -68,32 +68,29 @@ const BabylonCanvas: React.FC = () => {
   
   
   useEffect(() => {
-    // Initializing the canvas.
     const {engine, scene} = initializeCanvas(canvasRef.current)
     if (!engine || !scene) return;
     const loadMotif = async () => {
       try {
         const { motif: redMotif, center: redCenter } = await getMotif(
           "1Y26.json",
-          "0xcc2900", // Red color
+          "0xcc2900", 
           0xff3300,
           1,
           scene
         );
-        redMotif.position = new Vector3(-redCenter[0] + 3, -redCenter[1], redCenter[2]);
+        redMotif.position = new Vector3(-redCenter[0] + 3.25, -redCenter[1], redCenter[2]);
         motifRef.current.push(redMotif); // Add red motif to the array
-    
         const { motif: blueMotif, center: blueCenter } = await getMotif(
           "1Y26.json",
-          "0x0000ff", // Blue color
+          "0x0000ff", 
           0x0000cc,
           1,
           scene
         );
-        blueMotif.position = new Vector3(-blueCenter[0] - 3, -blueCenter[1], blueCenter[2]);
-        motifRef.current.push(blueMotif); // Add blue motif to the array
-    
-        // Apply scaling after loading motifs
+
+        blueMotif.position = new Vector3(-blueCenter[0] - 3.25, -blueCenter[1], blueCenter[2]);
+        motifRef.current.push(blueMotif);
         scaleMotif(scene, 0.3);
       } catch (error) {
         console.error("Error loading motif:", error);
@@ -110,27 +107,21 @@ const BabylonCanvas: React.FC = () => {
     engine.runRenderLoop(() => {
       const dragFactor = 0.01; 
       const rotationDrag = (currentRotationSpeed - defaultRotationSpeed) * dragFactor;
-    
       if (currentRotationSpeed > defaultRotationSpeed) {
         currentRotationSpeed -= rotationDrag;
       } else if (currentRotationSpeed < defaultRotationSpeed) {
         currentRotationSpeed += rotationDrag; // If speed drops below default, restore it
       }
-    
       if (Math.abs(currentRotationSpeed - defaultRotationSpeed) < 0.00001) {
         currentRotationSpeed = defaultRotationSpeed;
       }
-    
       motifRef.current.forEach((motif) => {
-        // Apply a slow rotation on each frame
         motif.rotation.y += currentRotationSpeed / 10;
         motif.rotation.x += currentRotationSpeed;
       });
-    
       scene.render();
     });
     
-    // Add resize handling
     const resizeHandler = () => {
       engine.resize();
       scaleMotif(scene, 0.3);

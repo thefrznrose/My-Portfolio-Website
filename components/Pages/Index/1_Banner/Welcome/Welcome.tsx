@@ -18,7 +18,7 @@ export default function Welcome() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setSpeed((prev) => Math.min(prev + 0.5, maxSpeed));
+      setSpeed((prev) => Math.min(prev + 0.15, maxSpeed));
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -57,9 +57,9 @@ export default function Welcome() {
         <div
           style={{
             borderRadius: "50%",
-            padding: "5px",
+            padding: "10px",
             background: `linear-gradient(${rotationAngle}deg, red, orange, yellow, green, blue, indigo, violet)`,
-            backgroundSize: "400% 400%",
+            // backgroundSize: "400% 400%",
             transition: hover ? "background 0.3s ease" : "none",
           }}
           onMouseEnter={() => setHover(true)}
@@ -69,7 +69,7 @@ export default function Welcome() {
             src="/Images/my-headshot.jpg"
             alt="Your Name"
             style={{
-              width: "clamp(100px, 20vw, 300px)",
+              width: "clamp(200px, 30vw, 400px)",
               height: "auto",
               borderRadius: "50%",
               objectFit: "cover",
@@ -90,7 +90,7 @@ export default function Welcome() {
         </Text>
 
         <Text
-          size="lg"
+          size="xl"
           mt="sm"
           style={{
             fontWeight: 700,
@@ -100,14 +100,14 @@ export default function Welcome() {
         </Text>
 
         {/* Buttons below text */}
-        <Group mt="md" gap={"md"}>
-          <Button variant="filled" color="blue" size="md">
+        <Group mt="md" gap={"xl"}>
+          <Button variant="filled" color="blue" size="xl">
             View Portfolio
           </Button>
-          <Button variant="outline" color="blue" size="md">
+          <Button variant="outline" color="blue" size="xl">
             Contact Me
           </Button>
-          <Button variant="light" color="blue" size="md">
+          <Button variant="light" color="blue" size="xl">
             About Me
           </Button>
         </Group>

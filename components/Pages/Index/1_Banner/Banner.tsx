@@ -6,7 +6,7 @@ export default function Banner() {
     <>
       <div
         style={{
-          position: "relative",
+          // position: "relative",
           width: "100vw",
           height: "80vh",
           overflow: "hidden",
@@ -17,8 +17,8 @@ export default function Banner() {
             transform: "translate(-0%, 10%)", // Shift to perfectly center both axes
           }}
         >
-          <BabylonCanvas />
           <Welcome />
+          <BabylonCanvas />
         </div>
       </div>
     </>
